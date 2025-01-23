@@ -113,6 +113,7 @@ import { hyperliquidPlugin } from "@elizaos/plugin-hyperliquid";
 import { echoChambersPlugin } from "@elizaos/plugin-echochambers";
 import { dexScreenerPlugin } from "@elizaos/plugin-dexscreener";
 import { pythDataPlugin } from "@elizaos/plugin-pyth-data";
+import { ethstoragePlugin } from "@elizaos/plugin-ethstorage"
 
 import { openaiPlugin } from "@elizaos/plugin-openai";
 import nitroPlugin from "@elizaos/plugin-router-nitro";
@@ -1153,7 +1154,8 @@ export async function createAgent(
                 : null,
             getSecret(character, "EMAIL_INCOMING_USER") && getSecret(character, "EMAIL_INCOMING_PASS") ||
             getSecret(character, "EMAIL_OUTGOING_USER") && getSecret(character, "EMAIL_OUTGOING_PASS") ?
-            emailPlugin : null
+            emailPlugin : null,
+            getSecret(character, "ETHSTORAGE_PRIVATE_KEY") ? ethstoragePlugin : null,
         ].filter(Boolean),
         providers: [],
         managers: [],
